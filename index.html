@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<title>Bản đồ Covid-19 trên thế giới - VnExpress</title>
+
+<script type="text/javascript"></script> <link href="https://fonts.googleapis.com/css?family=Merriweather:400,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://s.vnecdn.net/vnexpress/j/v12/event/covid/css/style.css" media="all"/>
+<script>var app=0;var viewapp='';var device_env=4;var staticURL='https://s.vnecdn.net/vnexpress/j/v12/event/covid/';var topicID=24489;var topicURL='https://gw.vnexpress.net/tp/get_article?topic_id='+topicID+'&limit=10&page=1&article_select=title,share_url,thumbnail_url,lead';var categoryID=1004519;var categoryURL='https://gw.vnexpress.net/ar/get_rule_2?category_id='+categoryID+'&limit=4&page=1&data_select=title,share_url,thumbnail_url,lead&exclude_id={exclude_id}';var trackerURL='https://gw.vnexpress.net/cr/?name=world_coronavirus';var excludeID=[];window.addEventListener('DOMContentLoaded',function(event){var xhr=new XMLHttpRequest();xhr.onreadystatechange=function(){if(xhr.readyState===4){var data;try{data=JSON.parse(xhr.responseText);}catch(e){console.log(e);}if(data.code===200){var topicData=data['data'][topicID]['articles']['data'];if(topicData.length){var topicHTML='';for(var i=0;i<topicData.length;i++){topicHTML+='<h2><a href="'+topicData[i]['share_url']+viewapp+'" title="'+topicData[i]['title']+'">'+topicData[i]['title']+'</a></h2>';excludeID.push(topicData[i]['article_id']);}document.querySelector('.box-hot-new marquee').innerHTML=topicHTML;document.querySelector('.box-hot-new.mobile').innerHTML='<div class="mq">'+topicHTML+'</div>';}else{var elPC=document.querySelector('.box-hot-new marquee');var elM=document.querySelector('.box-hot-new.mobile');elPC.parentNode.removeChild(elPC);elM.parentNode.removeChild(elM);}listNews(categoryURL,excludeID);}}};xhr.open('GET',topicURL);xhr.send();var xhrTracker=new XMLHttpRequest();xhrTracker.onreadystatechange=function(){if(xhrTracker.readyState===4){var data;try{data=JSON.parse(xhrTracker.responseText);}catch(e){console.log(e);}console.log(data);if(data.code===200){var byDay=data['data']['data'][0]['table_world'];var byTotal=data['data']['data'][0]['table_patient'];var oDate=new Date();var nHrs=(oDate.getHours()<10)?'0'+oDate.getHours():oDate.getHours();var nMin=(oDate.getMinutes()<10)?'0'+oDate.getMinutes():oDate.getMinutes();var nDate=oDate.getDate();var nMnth=oDate.getMonth()+1;var nYear=oDate.getFullYear();document.querySelector('.red_title').innerHTML='Tính đến '+nHrs+'h'+nMin+', '+nDate+'/'+nMnth+'/'+nYear+' '+((device_env==1)?'<br />':'')+'(Tổng cộng có '+byDay['total_cases']+' ca nhiễm)';document.querySelector('.box-thongke-thegioi .head').innerHTML='Tính đến '+nHrs+'h'+nMin+', '+nDate+'/'+nMnth+'/'+nYear+', nguồn: WorldOMeters';var byDayEl=document.querySelector('.count-covid-thegioi');byDayEl.querySelector('.nhiem strong').innerHTML=byDay['total_cases'];byDayEl.querySelector('.nhiem p').innerHTML=byDay['new_cases'];byDayEl.querySelector('.tuvong strong').innerHTML=byDay['total_deaths'];byDayEl.querySelector('.tuvong p').innerHTML=byDay['new_deaths'];byDayEl.querySelector('.khoi strong').innerHTML=byDay['total_recovered'];byDayEl.querySelector('.khoi p').innerHTML=byDay['new_recovered'];var byRightEl=document.querySelector('.thong-ke-quocgia');byRightEl.querySelector('.quoc-gia strong').innerHTML=byDay['total_country'];byRightEl.querySelector('.nhiem-benh strong').innerHTML=byDay['tot_cases_1m_pop'];byRightEl.querySelector('.tu-vong strong').innerHTML=byDay['deaths_1m_pop'];importScript(staticURL+'js/highcharts.js',function(){var cases=data['data']['data'][0]['chart']['total_cases'];var deaths=data['data']['data'][0]['chart']['total_deaths'];var recover=data['data']['data'][0]['chart']['total_currently_infected'];var chartCaseData=[];var chartRecoverData=[];for(var j=0;j<cases['data'].length;j++){if(cases['data'][j]>0){chartRecoverData.push([timestamp(cases['days'][j]),(cases['data'][j]-deaths['data'][j]-recover['data'][j])]);chartCaseData.push([timestamp(cases['days'][j]),cases['data'][j]]);}}chart({'title':'Ca đang nhiễm','id':'chart_cases','series':chartRecoverData,'series_title':'Số bệnh nhân','color':'#757575','data_end':cases['data'][(cases['data'].length-1)],'date_end':cases['days'][(cases['days'].length-1)]});var deaths=data['data']['data'][0]['chart']['total_deaths'];var chartDeathsData=[];for(var j=0;j<deaths['data'].length;j++){if(cases['data'][j]>0){chartDeathsData.push([timestamp(deaths['days'][j]),deaths['data'][j]]);}}chartGroup({'title':'Ca nhiễm, tử vong','id':'chart_deaths','series':[chartDeathsData,chartCaseData],'series_title':['Ca tử vong','Ca nhiễm'],'color':['#434343','#f14444'],'data_end':deaths['data'][(deaths['data'].length-1)],'date_end':deaths['days'][(deaths['days'].length-1)]});});var countryCase=data['data']['data'][0]['table_country'];var searchData=[];if(countryCase.length>0){var tpHTML='\
+                        <div class="flex-head">\
+                            <h4 class="title-cate">Thống kê theo quốc gia</h4>\
+                            <div action="" method="get" id="search" class="search">\
+                                <span class="twitter-typeahead" style="position: relative; display: inline-block;">\
+                                    <input id="search_covid" class="search-input" type="text" name="q" placeholder="Tìm theo tên quốc gia" autocomplete="off" onfocus="this.value=\'\'">\
+                                </span>\
+                                <span class="search-icon">\
+                                    <i class="iconfont-search"></i>\
+                                </span>\
+                            </div>\
+                            <li class="flex pin-menu">\
+                                <div class="td">Quốc gia</div>\
+                                <div class="td">Nhiễm</div>\
+                                <div class="td">Mới</div>\
+                                <div class="td">Tử vong</div>\
+                                <div class="td">Mới</div>\
+                                <div class="td">Khỏi</div>\
+                            </li>\
+                        </div>\
+                    ';var chau=[];var chauArr=['Châu Âu','Bắc Mỹ','Châu Á','Châu Phi','Nam Mỹ'];var kp=0;for(var p=0;p<countryCase.length;p++){if(chauArr.indexOf(countryCase[p]['country_vn'])>-1){chau.push(countryCase[p]);}else{tpHTML+='\
+                            <li class="flex show-table"'+((kp>10)?' style="display:none;"':'')+'>\
+                                <div class="td">'+countryCase[p]['country_vn']+'</div>\
+                                <div class="td">'+countryCase[p]['total_cases']+'</div>\
+                                '+((countryCase[p]['new_cases'])?'<div class="td">\
+                                    <div class="bg bg-nhiem">'+countryCase[p]['new_cases']+'</div>\
+                                </div>':'<div class="td"></div>')+'\
+                                <div class="td">'+countryCase[p]['total_deaths']+'</div>\
+                                '+((countryCase[p]['new_deaths'])?'<div class="td">\
+                                    <div class="bg bg-tuvong">'+countryCase[p]['new_deaths']+'</div>\
+                                    </div>':'<div class="td"></div>')+'\
+                                <div class="td">'+countryCase[p]['total_recovered']+'</div>\
+                            </li>\
+                            ';searchData.push({index:kp,country:countryCase[p]['country_vn'],country_ascii:textToAscii(countryCase[p]['country_vn']),country_en:textToAscii(countryCase[p]['country'])});kp++;}}document.querySelector('#list-quocgia').innerHTML=tpHTML;document.querySelector('.xem-them').addEventListener('click',function(){this.style.display='none';document.querySelector('.rut-gon').style.display='block';document.querySelector('.shrink-overflow-gradient').style.display='none';document.querySelector('.section_main3__right .wrap-border').setAttribute('style','position:sticky;top:70px;height:auto;position:-webkit-sticky;');if(device_env==1){document.querySelector('.section_main3__left .btn-load').setAttribute('style','position:sticky;width:110px;left:calc(50% - 40px);position:-webkit-sticky;');}else{document.querySelector('.section_main3__left .btn-load').setAttribute('style','position:sticky;width:110px;left:calc(50% - 150px);position:-webkit-sticky;');}var flex=document.querySelectorAll('#list-quocgia .flex');for(var h=0;h<flex.length;h++){flex[h].removeAttribute('style');}});document.querySelector('.rut-gon').addEventListener('click',function(){this.style.display='none';document.querySelector('.xem-them').style.display='block';document.querySelector('.shrink-overflow-gradient').style.display='block';document.querySelector('.section_main3__right .wrap-border').removeAttribute('style');var flex=document.querySelectorAll('#list-quocgia .flex');for(var h=0;h<flex.length;h++){if(h>11){flex[h].style.display='none';}}scrollToTable();});search(searchData);var byTotalEl=document.querySelector('.box-thongke-thegioi');if(chau.length>0){var inHTML='';for(var n=0;n<chau.length;n++){inHTML+='\
+                            <div class="item active ca-nhiem">\
+                                <span>'+chau[n]['country_vn']+'</span>\
+                                <strong>'+chau[n]['total_cases']+'</strong>\
+                            </div>\
+                            ';}byTotalEl.querySelector('.flex').innerHTML=inHTML;}else{byTotalEl.parentNode.removeChild(byTotalEl);}}var topics=data['data']['data'][0]['topics'];var topicEl=document.querySelector('.box-quantam');if(topics.length>0){var topicTemp='';for(var i=0;i<topics.length;i++){topicTemp+='<li><h3><a href="/covid-19'+viewapp+'#topic='+topics[i]+'" title="'+topics[i]+'">'+topics[i]+'</a></h3></li>';}topicEl.querySelector('ul').innerHTML=topicTemp;}}}};xhrTracker.open('GET',trackerURL);xhrTracker.send();});var scrollToTable=function(){try{var element=document.querySelector(".section_main3__left");element.scrollIntoView({behavior:'smooth',block:'end'});}catch(e){console.log(e);}}
+var resetResult=function(){var flex=document.querySelectorAll('#list-quocgia .flex');for(var h=0;h<flex.length;h++){if(h>11){flex[h].style.display='none';}else{flex[h].removeAttribute('style');}}document.querySelector('.xem-them').style.display='block';document.querySelector('.shrink-overflow-gradient').style.display='block';document.querySelector('.section_main3__right .wrap-border').removeAttribute('style');}
+var search=function(data){var input=document.getElementById('search_covid');let timeout=null;input.addEventListener('keyup',function(e){clearTimeout(timeout);timeout=setTimeout(function(){var normalized=textToAscii(input.value.trim());if(normalized.length>1){var result=[];for(var i=0;i<data.length;i++){if(data[i]['country_ascii'].indexOf(normalized)>-1||data[i]['country_en'].indexOf(normalized)>-1){result.push((data[i]['index']+1).toString());}}if(result.length){var flex=document.querySelectorAll('#list-quocgia .flex');for(var h=0;h<flex.length;h++){if(result.indexOf(h.toString())>-1){flex[h].removeAttribute('style');}else{flex[h].style.display='none';}}document.querySelector('.xem-them').style.display='none';document.querySelector('.rut-gon').style.display='none';document.querySelector('.shrink-overflow-gradient').style.display='none';document.querySelector('.section_main3__right .wrap-border').setAttribute('style','position:sticky;top:70px;height:auto;position:-webkit-sticky;');scrollToTable();}}else if(normalized.length==0){resetResult();}},500);});}
+var importScript=function(url,callback){var s=document.createElement('script');s.type='text/javascript';s.async=true;s.onload=function(){callback();}
+s.src=url;var x=document.getElementsByTagName('head')[0];x.appendChild(s);}
+var timestamp=function(e){return Date.parse(e);}
+var font24='24px';var font14='14px';var font12='12px';if(device_env==1){var font24='22px';var font14='11px';var font12='10px';}var chart=function(data){Highcharts.theme={chart:{backgroundColor:"#FFFFFF",height:"330px",spacing:[10,5,25,0]},exporting:{enabled:!1},time:{useUTC:!1},title:{text:data['title'],align:"left",style:{color:"#222222",font:font24+' "Merriweather", serif',lineHeight:"24"}},xAxis:{type:"datetime",minPadding:0,maxPadding:0,dateTimeLabelFormats:{day:"%d/%m",week:"%d/%m",month:"%d/%m"},crosshair:!0,tickPixelInterval:150,labels:{style:{color:"#222222",font:font14+' "Merriweather", serif'}},plotLines:!1,plotBands:!1},yAxis:{minPadding:0,maxPadding:0,opposite:!0,min:0,title:{enabled:!1},labels:{style:{color:"#222222",font:font14+' "Merriweather", serif'},formatter:function(){if(data['id']==="chart_cases"){return this.value/1000000+'M';}else{return this.value/1000+'K';}}},gridLineColor:"#CCCCCC"},plotOptions:{series:{states:{inactive:{opacity:1}}}},tooltip:{headerFormat:"<strong>Ngày {point.x:%d/%m/%Y}</strong><br>",pointFormat:"{series.name} : {point.y} <br/>",style:{color:"#222222",font:font14+' "Merriweather", serif'},shared:!0},credits:{enabled:false}};if(device_env===1){Highcharts.theme.yAxis={minPadding:0,maxPadding:0,opposite:!0,min:0,title:{enabled:!1},labels:{style:{color:"#222222",font:font12+' "Merriweather", serif'},formatter:function(){if(data['id']==="chart_cases"){return this.value/1000000+'M';}else{return this.value/1000+'K';}}},gridLineColor:"#CCCCCC"};}Highcharts.setOptions(Highcharts.theme);Highcharts.chart(data['id'],{legend:{layout:"horizontal",padding:0,itemDistance:10,itemMarginBottom:10,align:"left",verticalAlign:"top",itemStyle:{color:"#222222",font:font14+' "Merriweather", serif',cursor:"default"},itemHoverStyle:{color:"#222222",cursor:"default"}},lang:{thousandsSep:","},style:{borderWidth:"4px",borderColor:"#222222",marginBottom:"8px",width:"48px"},series:[{type:"area",name:data['series_title'],data:data['series'],color:data['color'],marker:{enabled:!1,symbol:"circle"}}]});}
+var chartGroup=function(data){Highcharts.theme={chart:{backgroundColor:"#FFFFFF",height:"330px",spacing:[10,5,25,0]},exporting:{enabled:!1},time:{useUTC:!1},title:{text:data['title'],align:"left",style:{color:"#222222",font:font24+' "Merriweather", serif',lineHeight:"24"}},legend:{layout:"horizontal",padding:0,itemDistance:10,itemMarginBottom:10,align:"left",verticalAlign:"top",itemStyle:{color:"#222222",font:font14+' "Merriweather", serif',cursor:"default"},itemHoverStyle:{color:"#222222",cursor:"default"}},xAxis:{type:"datetime",minPadding:0,maxPadding:0,dateTimeLabelFormats:{day:"%d/%m",week:"%d/%m",month:"%d/%m"},crosshair:!0,tickPixelInterval:150,labels:{style:{color:"#222222",font:font14+' "Merriweather", serif'}},plotLines:!1,plotBands:!1},yAxis:{minPadding:0,maxPadding:0,opposite:!0,min:0,title:{enabled:!1},labels:{style:{color:"#222222",font:font14+' "Merriweather", serif'},formatter:function(){return this.value/1000000+'M';}},gridLineColor:"#CCCCCC"},plotOptions:{series:{states:{inactive:{opacity:1}}}},tooltip:{headerFormat:"<strong>Ngày {point.x:%d/%m/%Y}</strong><br>",pointFormat:"{series.name} : {point.y} <br/>",style:{color:"#222222",font:font14+' "Merriweather", serif'},shared:!0},credits:{enabled:false}};if(device_env===1){Highcharts.theme.yAxis={minPadding:0,maxPadding:0,opposite:!0,min:0,title:{enabled:!1},labels:{style:{color:"#222222",font:font12+' "Merriweather", serif'},formatter:function(){return this.value/1000000+'M';}},gridLineColor:"#CCCCCC"};}Highcharts.setOptions(Highcharts.theme);Highcharts.chart(data['id'],{lang:{thousandsSep:","},style:{borderWidth:"4px",borderColor:"#222222",marginBottom:"8px",width:"48px"},series:[{type:"area",name:data['series_title'][1],data:data['series'][1],color:data['color'][1],marker:{enabled:!1,symbol:"circle"}},{type:"area",name:data['series_title'][0],data:data['series'][0],color:data['color'][0],marker:{enabled:!1,symbol:"circle"}}]});}
+var convertDay=function(days){var p=days.split('-');return parseInt(p[2])+'/'+parseInt(p[1]);}
+var listNews=function(categoryURL,excludeID){var xhrCat=new XMLHttpRequest();xhrCat.onreadystatechange=function(){if(xhrCat.readyState===4){var data;try{data=JSON.parse(xhrCat.responseText);}catch(e){console.log(e);}if(data.code===200){var topicData=data['data'][categoryID]['data'];if(topicData.length){var topicHTML='';for(var i=0;i<topicData.length;i++){if(topicData[i]['off_thumb']===0&&typeof topicData[i]['thumbnail_url']!=='undefined'&&topicData[i]['thumbnail_url']!=''){topicData[i]['thumbnail_url']=topicData[i]['thumbnail_url'].replace('.jpg','_300x180.jpg').replace('.png','_300x180.png').replace('.jpeg','_300x180.jpeg');}else{topicData[i]['thumbnail_url']='https://s1cdn.vnecdn.net/vnexpress/restruct/i/v341/v2_2019/pc/graphics/no-thumb-5x3.jpg';}topicHTML+='\
+                        <article class="art_item">\
+                            <div class="thumb_art thumb_full">\
+                                <a class="thumb_img thumb_5x3" href="'+topicData[i]['share_url']+viewapp+'"><img alt="'+topicData[i]['title']+'" src="'+topicData[i]['thumbnail_url']+'"></a>\
+                            </div>\
+                            <div class="content">\
+                                <h4 class="title_news"><a href="'+topicData[i]['share_url']+viewapp+'">'+topicData[i]['title']+'</a></h4>\
+                                <div class="description">'+topicData[i]['lead']+'</div>\
+                            </div>\
+                        </article>\
+                        ';}document.querySelector('.list_news .flex').innerHTML=topicHTML;}else{var elPC=document.querySelector('.list_news');elPC.parentNode.removeChild(elPC);}}}};xhrCat.open('GET',categoryURL.replace('{exclude_id}',excludeID.join(',')));xhrCat.send();}
+var importStyle=function(filepath){if(document.querySelectorAll('link[href="'+filepath+'"]').length<=0){var el=document.createElement('link');el.setAttribute('type','text/css');el.setAttribute('rel','Stylesheet');el.setAttribute('href',filepath);document.getElementsByTagName('head')[0].appendChild(el);}}
+var myvne=function(){var myvneURL='https://s.vnecdn.net/myvne/j/v24/myvne_users_redesign.js';var myvneCSS='https://s.vnecdn.net/myvne/c/v18/ls/myvne_2019.css';var myvneEXTEND=staticURL+'css/myvne.css';if(device_env==1){myvneURL='https://s.vnecdn.net/myvne/j/v25/m_myvne_users_v3.js';myvneCSS='https://s.vnecdn.net/myvne/c/v32/ls/m_myvne_2019.css';myvneEXTEND=staticURL+'css/mmyvne.css';}importScript(myvneURL,function(){myvne_users.run();});importStyle(myvneCSS);importStyle(myvneEXTEND);}
+var textToAscii=function(str){var AccentsMap=["aàảãáạăằẳẵắặâầẩẫấậ","AÀẢÃÁẠĂẰẲẴẮẶÂẦẨẪẤẬ","dđ","DĐ","eèẻẽéẹêềểễếệ","EÈẺẼÉẸÊỀỂỄẾỆ","iìỉĩíị","IÌỈĨÍỊ","oòỏõóọôồổỗốộơờởỡớợ","OÒỎÕÓỌÔỒỔỖỐỘƠỜỞỠỚỢ","uùủũúụưừửữứự","UÙỦŨÚỤƯỪỬỮỨỰ","yỳỷỹýỵ","YỲỶỸÝỴ"];for(var i=0;i<AccentsMap.length;i++){var re=new RegExp('['+AccentsMap[i].substr(1)+']','g');var char=AccentsMap[i][0];str=str.replace(re,char).toLowerCase();}return str;}
+importScript(staticURL+'js/jquery-1.10.2.min.js',function(){importScript(staticURL+'js/common.js',function(){});});</script>
+<!-- ADS -->
+<div class="container">
+<h2 class="title_cate center" style="color:#222">
+Covid-19 trên Thế giới
+</h2>
+<div class="red_title center mb20" style="color:#4F4F4F">
+</div>
+<div class="count-covid-thegioi flex">
+<div class="item nhiem">
+<label>Nhiễm</label>
+<strong>-</strong>
+<p>-</p>
+</div>
+<div class="item tuvong">
+<label>Tử vong</label>
+<strong>-</strong>
+<p>-</p>
+</div>
+<div class="item khoi">
+<label>Khỏi</label>
+<strong>-</strong>
+<p style="color:#00945E">-</p>
+</div>
+</div>
+<div class="box-hot-new">
+<marquee direction="left" behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();">
+</marquee>
+</div>
+<div class="box-hot-new mobile">
+</div>
+<div class="box-chart-covid row">
+<div class="col-md-6 col-xs-12 mb24">
+<h3 class="title-line" style="margin-bottom: -45px;">&nbsp;</h3>
+<div id="chart_cases" style="width:100%;">
+<div class="placeholder-demo" style="height: 30px;"></div>
+<div class="placeholder-demo" style="height: 310px;margin-top: 20px;"></div>
+</div>
+</div>
+<div class="col-md-6 col-xs-12 mb24">
+<h3 class="title-line" style="margin-bottom: -45px;">&nbsp;</h3>
+<div id="chart_deaths" style="width:100%;">
+<div class="placeholder-demo" style="height: 30px;"></div>
+<div class="placeholder-demo" style="height: 310px;margin-top: 20px;"></div>
+</div>
+</div>
+</div>
+<div class="box-thongke box-thongke-thegioi">
+<p class="head"></p>
+<div class="flex">
+</div>
+</div>
+</div>
+</section>
+<style>.wrap-border{position:relative}.btn-load{display:block;position:absolute;bottom:10px;left:calc(50% - 54.5px)}.shrink-overflow-gradient{position:absolute;left:0;width:100%;bottom:0;height:50%;background:linear-gradient(180deg,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.013) 8.1%,hsla(0,0%,100%,.049) 15.5%,hsla(0,0%,100%,.104) 22.5%,hsla(0,0%,100%,.175) 29%,hsla(0,0%,100%,.259) 35.3%,hsla(0,0%,100%,.352) 41.2%,hsla(0,0%,100%,.45) 47.1%,hsla(0,0%,100%,.55) 52.9%,hsla(0,0%,100%,.648) 58.8%,hsla(0,0%,100%,.741) 64.7%,hsla(0,0%,100%,.825) 71%,hsla(0,0%,100%,.896) 77.5%,hsla(0,0%,100%,.951) 84.5%,hsla(0,0%,100%,.987) 91.9%,#fff);pointer-events:none}li.flex:last-child{border-bottom:none}.box-thongke-thegioi .percent{font-size:14px!important}@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }
+    100% { opacity: 1; -moz-transform: translateY(0); }
+}.show-table{-webkit-animation:slide-down .5s ease-out;-moz-animation:slide-down .5s ease-out}.list-quocgia{border-top:none}.flex-head{position:sticky;top:50px;background:#fff;padding-top:5px}li.flex.pin-menu{border-bottom:2px solid #e5e5e5;padding-top:5px;position:sticky;top:50px;background:#fff;height:55px;width:100%}li.flex.pin-menu .td{color:#757575!important}@media (max-width:768px){.item.active.ca-nhiem{width:100%}.flex-head{top:40px}.box-thongke-thegioi .percent{display:block;margin-bottom:15px}}</style>
+<section class="section section_main3">
+<div class="container">
+<div class="flex justify-content-between mb24">
+<div class="section_main3__left">
+<div class="wrap-border">
+<ul class="list-quocgia" id="list-quocgia"></ul>
+<div class="shrink-overflow-gradient"></div>
+<div class="btn-load">
+<a href="javascript:void(0);" class="xem-them" title="Xem thêm">Xem thêm</a>
+<a href="javascript:void(0);" class="rut-gon" title="Rút gọn" style="display:none;">Rút gọn</a>
+</div>
+</div>
+</div>
+<div class="section_main3__right">
+<div class="wrap-border thong-ke-quocgia">
+<div class="item quoc-gia">
+<label>Quốc gia & vùng lãnh thổ có ca nhiễm</label>
+<strong>-</strong>
+</div>
+<div class="item">
+<label>Thời gian ủ bệnh (ngày)</label>
+<strong>2-14</strong>
+<span>(Có thể tới 27 ngày)</span>
+</div>
+<div class="item nhiem-benh">
+<label>Nhiễm / 1 triệu người</label>
+<strong>-</strong>
+<span>(Tính theo tổng dân số thế giới)</span>
+</div>
+<div class="item tu-vong">
+<label>Tử vong / 1 triệu người</label>
+<strong>-</strong>
+<span>(Tính theo tổng dân số thế giới)</span>
+</div>
+</div>
+</div>
+</div>
+<section style="margin-bottom: 10px;">
+<div id="VN_PC_FAQ_Covid19_MDB_970x250">
+<script>googTagCode.display.push("VN_PC_FAQ_Covid19_MDB_970x250");</script>
+</div>
+</section>
+<!--END MAIN MENU MOBILE-->
+<div class="mask-content"></div>
+<div class="clearfix"></div>
+<div id="tt_end_page" style="display: none;"></div></body>
+</html>
